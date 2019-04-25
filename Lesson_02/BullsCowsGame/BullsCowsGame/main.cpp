@@ -1,3 +1,6 @@
+// BullsCows Game - Lesson_02 from Unreal C++ Course
+// Coded by Robert Sibek
+
 #include <iostream>
 #include <string>
 #include <Windows.h>
