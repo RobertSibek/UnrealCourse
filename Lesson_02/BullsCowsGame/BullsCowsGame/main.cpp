@@ -1,13 +1,14 @@
-// BullsCows Game - Lesson_02 from Unreal C++ Course
-// Coded by Robert Sibek
-
 #include <iostream>
 #include <string>
+#ifdef _WIN32
 #include <Windows.h>
+#endif
 #include "FBullCowGame.h"
 
+// to make compiler Unreal friendly
 using FText = std::string;
 
+// Method prototypes
 void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
@@ -20,6 +21,10 @@ void PrintColorPreview();
 FBullCowGame BCGame;
 enum Colors { blue = 1, green, cyan, red, purple, yellow, grey, dgrey, hblue, hgreen, hred, hpurple, hyellow, hwhite };
 
+
+/*
+	Main Entry for the game
+*/
 int main() {
 
 	do {
@@ -30,13 +35,14 @@ int main() {
 	} while (AskToPlayAgain());
 
 	return 0;
-
 }
 
 void TextColor(int32 color)
 {
+#ifdef _WIN32
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(handle, color);
+#endif
 }
 
 void PrintColorPreview() {
@@ -48,7 +54,6 @@ void PrintColorPreview() {
 
 void PlayGame()
 {
-	//PrintColorPreview();
 	int32 MaxTries = BCGame.GetMaxTries();
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
 		FText Guess = GetValidGuess();
@@ -87,18 +92,15 @@ void FillChar(char c, int32 count) {
 		std::putchar(c);
 	}
 	std::cout << std::endl;
-
 }
 
 void PrintIntro() {
-	//for (int32 c = 1; c < 15; c++) {
-	//	TextColor(c);
-	//	std::cout << "Line color " << c << std::endl;
-	//}
-	// TODO Provide more beautiful intro
 	constexpr int32 WORD_LENGTH = 5;
 	TextColor(hwhite);
-	std::cout << "===== Welcome to Bulls and Cows =====" << std::endl;
+	FString WelcomeMsg = "===== Welcome to Bulls and Cows =====";
+	FillChar('=', WelcomeMsg.length());
+	std::cout << WelcomeMsg;
+	FillChar('=', WelcomeMsg.length());
 	std::cout << "Can you guess the " << BCGame.GetWordLength() << " letter word?" << std::endl << std::endl;
 }
 
@@ -109,7 +111,7 @@ FText GetValidGuess() {
 		int32 CurrentTry = BCGame.GetCurrentTry();
 		std::cout << std::endl;
 		TextColor(hblue);
-		std::cout << CurrentTry << ". What is your Guess? ";
+		std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries() << ". What is your Guess? ";
 		getline(std::cin, guess);
 
 		GuessStatus = BCGame.CheckGuessValidity(guess);
@@ -119,7 +121,10 @@ FText GetValidGuess() {
 			std::cout << "Please enter a " << BCGame.GetWordLength() << " letter word.";
 			break;
 		case EGuessStatus::Not_Isogram:
-			std::cout << "Plese enter a valid Isogram.";
+			std::cout << "Plese enter non repeating letters.";
+			break;
+		case EGuessStatus::Not_LowerCase:
+			std::cout << "Please enter all letters in lowercase";
 			break;
 		case EGuessStatus::Empty_String:
 			std::cout << "Please enter non empty string.";
@@ -127,8 +132,6 @@ FText GetValidGuess() {
 		default:
 			break;
 		}
-
-		std::cout << "\n";
 	} while (GuessStatus != EGuessStatus::OK);
 	return guess;
 }
