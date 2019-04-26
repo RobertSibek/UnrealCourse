@@ -4,7 +4,7 @@
 using FString = std::string;
 using int32 = int;
 
-constexpr int32 MAX_TRIES = 5;
+constexpr int32 MAX_TRIES = 3;
 constexpr int32 FIRST_TRY = 1;
 const FString HIDDEN_WORD = "planet";
 

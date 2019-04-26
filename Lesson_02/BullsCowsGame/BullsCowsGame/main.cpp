@@ -12,9 +12,10 @@ void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 void PrintBack(FText guess);
-void SummarizeGame();
+void PrintGameSummary();
 bool AskToPlayAgain();
 void FillChar(char c, int32 count);
+void PrintColorPreview();
 
 FBullCowGame BCGame;
 enum Colors { blue = 1, green, cyan, red, purple, yellow, grey, dgrey, hblue, hgreen, hred, hpurple, hyellow, hwhite };
@@ -38,8 +39,16 @@ void TextColor(int32 color)
 	SetConsoleTextAttribute(handle, color);
 }
 
+void PrintColorPreview() {
+	for (int i = 1; i <= Colors::hwhite; i++) {
+		TextColor(i);
+		std::cout << "This is text in Colors[" << i << "]" << std::endl;
+	}
+}
+
 void PlayGame()
 {
+	//PrintColorPreview();
 	int32 MaxTries = BCGame.GetMaxTries();
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
 		FText Guess = GetValidGuess();
@@ -51,20 +60,25 @@ void PlayGame()
 			std::cout << std::endl;
 		}
 	}
-
-	if (BCGame.IsGameWon()) {
-		SummarizeGame();
-	}
-
-	// TODO Summarize the game
+	PrintGameSummary();
 }
 
-void SummarizeGame() {
-	TextColor(green);
-	FText msg = "Congratulations! You have Won the game.";
-	FillChar('=', msg.length());
-	std::cout << msg;
-	FillChar('=', msg.length());
+void PrintGameSummary() {
+	if (BCGame.IsGameWon()) {
+		TextColor(green);
+		FText msg = "Congratulations! You have Won the game.";
+		FillChar('=', msg.length());
+		std::cout << msg;
+		FillChar('=', msg.length());
+	}
+	else {
+		TextColor(grey);
+		FText msg = "Bad luck. Maybe next time.";
+		FillChar('=', msg.length());
+		std::cout << msg;
+		FillChar('=', msg.length());
+	}
+
 }
 
 void FillChar(char c, int32 count) {
