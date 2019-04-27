@@ -73,8 +73,6 @@ bool FBullCowGame::IsLowerCase(FString Word) const
 	return true;
 }
 
-
-
 EGuessStatus FBullCowGame::CheckGuessValidity(FString guess) const
 {
 	if (guess == "") {
