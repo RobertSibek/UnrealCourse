@@ -1,3 +1,10 @@
+######################
+# VS Generated files #
+######################
+
+# Debug directories
+
+
 # Prerequisites
 *.d
 .vs
@@ -31,3 +38,14 @@
 *.exe
 *.out
 *.app
+
+########################
+# Unreal Derived Files #
+########################
+
+*/*/Build
+*/*/Binaries
+*/*/DerivedDataCache
+*/*/Intermediate
+*/*/Saved
+Section_03_BuildingEscape/BuildingEscape/Content/StarterContent/
