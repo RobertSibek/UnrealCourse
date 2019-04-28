@@ -1,6 +1,0 @@
-﻿  FBullCowGame.cpp
-D:\Unreal Projects\Unreal Course\Lesson_02\BullsCowsGame\BullsCowsGame\FBullCowGame.cpp(35): warning C4018: '<': signed/unsigned mismatch
-D:\Unreal Projects\Unreal Course\Lesson_02\BullsCowsGame\BullsCowsGame\FBullCowGame.cpp(36): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-  Generating Code...
-  BullsCowsGame.vcxproj -> D:\Unreal Projects\Unreal Course\Lesson_02\BullsCowsGame\Debug\BullsCowsGame.exe
