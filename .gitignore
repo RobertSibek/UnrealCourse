@@ -3,7 +3,7 @@
 ######################
 
 # Debug directories
-
+Debug
 
 # Prerequisites
 *.d
@@ -48,4 +48,5 @@
 */*/DerivedDataCache
 */*/Intermediate
 */*/Saved
-Section_03_BuildingEscape/BuildingEscape/Content/StarterContent/
+
+Section_03/BuildingEscape/Content/StarterContent/
