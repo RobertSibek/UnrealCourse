@@ -4,6 +4,7 @@
 #include <Windows.h>
 #endif
 #include "FBullCowGame.h"
+#include "IntroArt.h"
 
 // to make compiler Unreal friendly
 using FText = std::string;
@@ -97,6 +98,9 @@ void FillChar(char c, int32 count) {
 void PrintIntro() {
 	constexpr int32 WORD_LENGTH = 5;
 	TextColor(hwhite);
+	std::cout << bullArt;
+
+
 	FString WelcomeMsg = "===== Welcome to Bulls and Cows =====";
 	FillChar('=', WelcomeMsg.length());
 	std::cout << WelcomeMsg;

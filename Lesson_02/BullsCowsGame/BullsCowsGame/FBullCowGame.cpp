@@ -1,6 +1,7 @@
 #pragma once
 #include "FBullCowGame.h"
 #include <map>
+#include <time.h>
 #define TMap std::map
 
 FBullCowGame::FBullCowGame()
@@ -9,7 +10,7 @@ FBullCowGame::FBullCowGame()
 }
 
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
-int32 FBullCowGame::GetWordLength() const { return HIDDEN_WORD.length(); }
+int32 FBullCowGame::GetWordLength() const { return MyHiddenWord.length(); }
 int32 FBullCowGame::GetMaxTries() const { 
 	TMap<int32, int32> WordLengthToMaxTries{ {3, 5}, {4, 6}, {5, 7}, {6, 10}, {7, 15} };
 	return WordLengthToMaxTries[MyHiddenWord.length()]; 
@@ -17,10 +18,10 @@ int32 FBullCowGame::GetMaxTries() const {
 
 void FBullCowGame::Reset()
 {
-	const FString HIDDEN_WORD = "plamer";
 	MyCurrentTry = FIRST_TRY;
 	MyMaxTries = MAX_TRIES;
-	MyHiddenWord = HIDDEN_WORD;
+	srand(time(NULL));
+	MyHiddenWord = HiddenWords[rand() % HiddenWords->length()];
 	MyCurrentTry = 1;
 	bGameWon = false;
 	return;

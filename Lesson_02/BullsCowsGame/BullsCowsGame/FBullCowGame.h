@@ -8,7 +8,7 @@ using int32 = int;
 // defining constants
 constexpr int32 MAX_TRIES = 5;
 constexpr int32 FIRST_TRY = 1;
-const FString HIDDEN_WORD = "planet";
+const FString HiddenWords[] = { "planet", "love", "world", "mouse", "goal", "money", "life", "riot" };
 
 struct FBullCowCount {
 	int32 Bulls = 0;
